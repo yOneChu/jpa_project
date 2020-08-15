@@ -14,15 +14,14 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        show-sql: true # System.out을 통해 찍는다.
+#        show-sql: true # System.out을 통해 찍는다.
         format_sql: true
         jdbc.lob.non_contextual_creation: true
 
 logging:
   level:
     org.hibernate.SQL: debug
-#      type.descriptor.sql: trace
-
+    org.hibernate.type: trace # 파라미터 보여준다.
 
 #  spring.datasource.url=jdbc:postgresql://localhost:5432/springboot
 #  spring.datasource.username=postgres
