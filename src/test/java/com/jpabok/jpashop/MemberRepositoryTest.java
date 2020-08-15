@@ -1,5 +1,6 @@
 package com.jpabok.jpashop;
 
+import com.jpabok.jpashop.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,7 @@ public class MemberRepositoryTest {
     MemberRepository memberRepository;
 
     @Test
-    @Rollback(false)
+    @Rollback(false) // Rollback false를 해야 db에 실제 데이터가 저장한다
     public void testMember() throws Exception {
         // given
         Member member = new Member();
