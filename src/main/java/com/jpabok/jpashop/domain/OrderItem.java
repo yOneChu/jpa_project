@@ -1,5 +1,6 @@
 package com.jpabok.jpashop.domain;
 
+import com.jpabok.jpashop.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
+    @ManyToOne
     private Item item;
 
     @ManyToOne
