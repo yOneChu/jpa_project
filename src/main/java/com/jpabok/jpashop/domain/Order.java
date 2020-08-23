@@ -1,6 +1,8 @@
 package com.jpabok.jpashop.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,10 +12,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_id")
     private Long id;
 
@@ -34,17 +39,18 @@ public class Order {
 
 
     //연관관계 메서드
-    public void setMember(Member member){
+    public void setMember(Member member) {
         this.member = member;
         member.getOrders().add(this);
     }
 
-    public void addOrderItem(OrderItem orderItem){
+    public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
-        orderItem.setOrder(this);;
+        orderItem.setOrder(this);
+        ;
     }
 
-    public void setDelivery(Delivery delivery){
+    public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
@@ -54,7 +60,7 @@ public class Order {
         Order order = new Order();
         order.setMember(member);
         order.setDelivery(delivery);
-        for(OrderItem orderItem : orderItems){
+        for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
         }
 
@@ -68,22 +74,23 @@ public class Order {
      * 주문 취소
      */
     public void cancel() {
-        if(delivery.getStatus() == DeliveryStatus.COMP) {
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
             throw new IllegalStateException("이미 배송이 완료되었습니다.");
         }
         this.setStatus(OrderStatus.CANCEL);
-        for(OrderItem orderItem : orderItems) {
+        for (OrderItem orderItem : orderItems) {
             orderItem.cancel(); //재고원복
         }
     }
 
     // 조회 로직
+
     /**
      * 전체 주문 가격 조회
      */
     public int getTotalPrice() {
-        int totalPrice  = 0;
-        for(OrderItem orderItem : orderItems) {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
             totalPrice += orderItem.getOrderPrice();
         }
         return totalPrice;
@@ -91,5 +98,6 @@ public class Order {
         //위 로직을 아래처럼 간단하게 할 수 있다.
         //return orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
     }
+
 
 }
