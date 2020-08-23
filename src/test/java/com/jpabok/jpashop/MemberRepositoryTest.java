@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 public class MemberRepositoryTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    //MemberRepository memberRepository;
 
     @Test
     @Rollback(false) // Rollback false를 해야 db에 실제 데이터가 저장한다
