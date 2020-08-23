@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor // final 있는 필드만 가지고 생성자를 만들어 준다
 //@AllArgsConstructor // 모든 필드의 생성자를 만들어 준다.
-public class MemberService {  // --> TESTCASE 만드는 단축키(Shift + Ctril +T)
+public class MemberService {
 
     private final MemberRepository memberRepository;
 
