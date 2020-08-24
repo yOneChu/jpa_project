@@ -40,6 +40,9 @@ public class OrderItem {
          orderItem.setOrderPrice(orderPrice);
          orderItem.setCount(count);
 
+         System.out.println("count ======== " + count);
+
+
          item.removeStock(count);
          return orderItem;
     }

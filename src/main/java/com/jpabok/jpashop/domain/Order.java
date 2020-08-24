@@ -89,9 +89,10 @@ public class Order {
      * 전체 주문 가격 조회
      */
     public int getTotalPrice() {
+        System.out.println("getTotalPrice() == ");
         int totalPrice = 0;
         for (OrderItem orderItem : orderItems) {
-            totalPrice += orderItem.getOrderPrice();
+            totalPrice += orderItem.getTotalPrice();
         }
         return totalPrice;
 
