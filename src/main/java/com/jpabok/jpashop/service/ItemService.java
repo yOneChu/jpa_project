@@ -1,5 +1,6 @@
 package com.jpabok.jpashop.service;
 
+import com.jpabok.jpashop.domain.item.Book;
 import com.jpabok.jpashop.domain.item.Item;
 import com.jpabok.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,19 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional //수정은 아래와 같이 변경감지!! (merge는 사용X)
+    public Item updateItem(Long itemId, Book param) {
+        Item findItem = itemRepository.findOne(itemId);
+        findItem.setPrice(param.getPrice());
+        findItem.setName(param.getName());
+        findItem.setStockQuantity(param.getStockQuantity());
+        return findItem;
+    }
+
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
-
 
     public Item findOne(Long itemId){
         return itemRepository.findOne(itemId);

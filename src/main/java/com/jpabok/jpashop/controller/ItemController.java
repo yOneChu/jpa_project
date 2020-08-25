@@ -72,7 +72,7 @@ public class ItemController {
 
 
         Book book = new Book();
-        book.setIsbn(form.getIsbn());
+        book.setId(form.getId());
         book.setName(form.getName());
         book.setPrice(form.getPrice());
         book.setStockQuantity(form.getStockQuantity());
@@ -80,6 +80,6 @@ public class ItemController {
         book.setIsbn(form.getIsbn());
 
         itemService.saveItem(book);
-        return "redirect:items";
+        return "redirect:/items";
     }
 }

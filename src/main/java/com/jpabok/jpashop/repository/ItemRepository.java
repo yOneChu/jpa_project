@@ -14,12 +14,12 @@ import java.util.List;
 public class ItemRepository {
     private final EntityManager em;
 
-    public void save(Item item){
+    public void  save(Item item){
         if(item.getId() == null){
             em.persist(item);
         }else{
             log.info("merge ==============");
-            em.merge(item); // update
+            em.merge(item); // 실무에서는 잘 쓰이지 않는다.
         }
     }
 
