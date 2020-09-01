@@ -1,5 +1,6 @@
 package com.jpabok.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,7 @@ public class Member {
     @Embedded // 내장type 을 포함했다.
     private Address address;
 
+    @JsonIgnore // JSON으로 표현해줄때 제외한다
     @OneToMany(mappedBy = "member") // Order 테이블의 member에 의해 매핑된다.
     private List<Order> orders = new ArrayList<>();
 }
