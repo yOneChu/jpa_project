@@ -1,7 +1,9 @@
 package com.jpabok.jpashop;
 
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class JpashopApplication {
@@ -10,4 +12,14 @@ public class JpashopApplication {
 		SpringApplication.run(JpashopApplication.class, args);
 	}
 
+
+	@Bean
+	Hibernate5Module hibernate5Module() {
+
+		Hibernate5Module hibernate5Module = new Hibernate5Module();
+
+		//hibernate5Module.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, true); // 내용보면 알수있듯이 연관정보 다 가져온다
+
+		return hibernate5Module;
+	}
 }
