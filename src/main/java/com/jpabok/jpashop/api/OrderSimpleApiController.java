@@ -6,6 +6,7 @@ import com.jpabok.jpashop.domain.Order;
 import com.jpabok.jpashop.domain.OrderStatus;
 import com.jpabok.jpashop.repository.OrderRepository;
 import com.jpabok.jpashop.repository.OrderSearch;
+import com.jpabok.jpashop.repository.OrderSimpleQueryDto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +52,7 @@ public class OrderSimpleApiController {
     }
 
 
+    // Fetch 조인 Good!
     @GetMapping("/api/v3/simple-orders")
     public List<SimpleOrderDto> orderV3() {
         List<Order> orders  =   orderRepository.findAllWithMemberDelivery();
@@ -59,6 +61,12 @@ public class OrderSimpleApiController {
                     .collect(Collectors.toList());
 
         return result;
+    }
+
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderSimpleQueryDto> ordersV4() {
+        return orderRepository.findOrderDtos();
+
     }
 
 

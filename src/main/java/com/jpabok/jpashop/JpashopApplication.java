@@ -13,7 +13,7 @@ public class JpashopApplication {
 	}
 
 
-	@Bean
+	/*@Bean
 	Hibernate5Module hibernate5Module() {
 
 		Hibernate5Module hibernate5Module = new Hibernate5Module();
@@ -21,5 +21,5 @@ public class JpashopApplication {
 		//hibernate5Module.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, true); // 내용보면 알수있듯이 연관정보 다 가져온다
 
 		return hibernate5Module;
-	}
+	}*/
 }
