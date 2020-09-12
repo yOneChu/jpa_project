@@ -113,6 +113,18 @@ public class OrderRepository {
         ).getResultList();
     }
 
+
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o " +
+                        " join fetch o.member m " +
+                        " join fetch o.delivery d "+
+                        " join fetch o.orderItems oi " +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
+
+
     public List<OrderSimpleQueryDto> findOrderDtos() {
         return em.createQuery(
                 "select new com.jpabok.jpashop.repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address) " +
